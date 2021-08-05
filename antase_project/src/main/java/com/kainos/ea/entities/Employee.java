@@ -26,6 +26,7 @@ public class Employee {
         this.employee_type = employee_type;
     }
 
+    //for proof of concept
     public Employee(String f_name, String l_name, String ni_number, String employee_address, float salary,
                     String bank_detail, short is_Manager, String employee_type) {
         this.f_name = f_name;
@@ -89,7 +90,7 @@ public class Employee {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
@@ -125,13 +126,17 @@ public class Employee {
         this.employee_type = employee_type;
     }
 
+    public float calcPay(){ // calculate monthly pay in pence
+        return getSalary() / 12;
+    }
+
     @Override
     public String toString(){
         return String.format("""
                     Employee %d:\s
                     \tName = %s,\s
                     \tSalary = £%,.2f,\s""",
-                employee_id, f_name, salary/100.0);
+                employee_id, f_name, salary);
     }
 
 }

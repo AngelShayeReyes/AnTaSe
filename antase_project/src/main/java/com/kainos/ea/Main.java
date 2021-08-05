@@ -1,31 +1,29 @@
 package com.kainos.ea;
 
+import com.kainos.ea.database.EmployeeDB;
 import com.kainos.ea.entities.Employee;
-import com.kainos.ea.entities.HR;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        List<String> types = Arrays.asList("Technical", "HR", "Sales", "Finance", "BU");
         boolean running = true;
-        while (running) {
+        while(running){
             System.out.println("1. Do a query");
             System.out.println("2. Add a normal employee");
+            System.out.println("4. Add a sales employee");
             System.out.println("9. Quit");
             Scanner input = new Scanner(System.in);
-            int x = Integer.parseInt(input.nextLine());
-            HR hr = new HR();
+            int x = input.nextInt();
+
             switch (x) {
                 case 1:
-                    List<Employee> employees = hr.getEmployees();
-                    for (com.kainos.ea.entities.Employee emp : employees) {
+                    List<Employee> employees = EmployeeDB.getEmployees();
+                    for(com.kainos.ea.entities.Employee emp : employees){
                         System.out.println(emp);
                     }
                     break;
@@ -64,12 +62,20 @@ public class Main {
                         System.out.println("Type not supported");
                         break;
                     }
+                    boolean managerTmp;
                     Employee employee = new Employee(f_name, l_name, ni_number,
                             address, salary, bank, (short)manager, type);
                     hr.addEmployee(employee);
                     break;
+                case 4:
+                    List<Employee> sales_employees = EmployeeDB.getEmployees();
+                    for(com.kainos.ea.entities.Employee emp : sales_employees) {
+                        System.out.println(emp);
+                    }
+                    break;
                 case 9:
                     running = false;
+                
             }
         }
     }
