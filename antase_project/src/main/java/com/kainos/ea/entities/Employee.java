@@ -26,6 +26,7 @@ public class Employee {
         this.employee_type = employee_type;
     }
 
+    //for proof of concept
     public Employee(int employee_id, String f_name, String l_name, float salary) {
         this.employee_id = employee_id;
         this.f_name = f_name;
