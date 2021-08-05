@@ -10,11 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Scanner;
 
 public class EmployeeDB {
-
-    private String department;
 
     private static Connection c;
     private static Connection getConnection() {
@@ -41,36 +38,6 @@ public class EmployeeDB {
         return null;
     }
 
-
-    public static List<Employee> getEmployeeDepartment() {
-
-        if (c == null) {
-            c = getConnection();
-        }
-        List<Employee> emps = new ArrayList<>();
-        try {
-            Statement s = c.createStatement();
-
-            System.out.println("Choose from departments: Finance, HR, Technical, BU and Sales");
-            Scanner in = new Scanner(System.in);
-            String department = in.nextLine();
-
-            ResultSet rows = s.executeQuery("SELECT * FROM Employee WHERE employee_type='"+ department+"';");
-
-            while (rows.next()) {
-                emps.add(new Employee(
-                        rows.getShort("employee_id"),
-                        rows.getString("f_name"),
-                        rows.getString("l_name"),
-                        rows.getInt("salary")));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return emps;
-    }
-
-
     public static List<Employee> getEmployees() {
 
         if (c == null) {
@@ -95,33 +62,5 @@ public class EmployeeDB {
         }
         return emps;
     }
-
-    public static List<Employee> getEmployeeGrossPay() {
-
-        if (c == null) {
-            c = getConnection();
-        }
-        List<Employee> emps = new ArrayList<>();
-        try {
-            Statement s = c.createStatement();
-            ResultSet rows = s.executeQuery(
-                    """
-                            SELECT * from Employee;
-                            """);
-            while (rows.next()) {
-                emps.add(new Employee(
-                        rows.getShort("employee_id"),
-                        rows.getString("f_name"),
-                        rows.getString("l_name"),
-                        rows.getInt("salary")));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return emps;
-    }
-
-
-
 
 }
