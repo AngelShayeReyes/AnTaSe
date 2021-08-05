@@ -9,7 +9,7 @@ public class SalesEmployee extends Employee {
 
     public SalesEmployee(int employee_id, String f_name, String l_name, String ni_number,
                          String employee_address, float salary, String bank_detail,
-                         boolean is_Manager, boolean active, String employee_type,
+                         short is_Manager, short active, String employee_type,
                          float commissionRate, int salesTotal) {
         super(employee_id, f_name, l_name, ni_number, employee_address, salary, bank_detail,
                 is_Manager, active, employee_type);

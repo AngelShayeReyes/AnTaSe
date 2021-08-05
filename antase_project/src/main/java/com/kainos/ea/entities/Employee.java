@@ -8,12 +8,12 @@ public class Employee {
     private String employee_address;
     private float salary;
     private String bank_detail;
-    private boolean is_Manager;
-    private boolean active;
+    private short is_Manager;
+    private short active;
     private String employee_type;
 
     public Employee(int employee_id, String f_name, String l_name, String ni_number, String employee_address, float salary,
-                    String bank_detail, boolean is_Manager, boolean active, String employee_type) {
+                    String bank_detail, short is_Manager, short active, String employee_type) {
         this.employee_id = employee_id;
         this.f_name = f_name;
         this.l_name = l_name;
@@ -27,6 +27,18 @@ public class Employee {
     }
 
     //for proof of concept
+    public Employee(String f_name, String l_name, String ni_number, String employee_address, float salary,
+                    String bank_detail, short is_Manager, String employee_type) {
+        this.f_name = f_name;
+        this.l_name = l_name;
+        this.ni_number = ni_number;
+        this.employee_address = employee_address;
+        this.salary = salary;
+        this.bank_detail = bank_detail;
+        this.is_Manager = is_Manager;
+        this.employee_type = employee_type;
+    }
+
     public Employee(int employee_id, String f_name, String l_name, float salary) {
         this.employee_id = employee_id;
         this.f_name = f_name;
@@ -90,19 +102,19 @@ public class Employee {
         this.bank_detail = bank_detail;
     }
 
-    public boolean isIs_Manager() {
+    public short isIs_Manager() {
         return is_Manager;
     }
 
-    public void setIs_Manager(boolean is_Manager) {
+    public void setIs_Manager(short is_Manager) {
         this.is_Manager = is_Manager;
     }
 
-    public boolean isActive() {
+    public short isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(short active) {
         this.active = active;
     }
 

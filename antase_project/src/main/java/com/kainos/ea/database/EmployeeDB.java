@@ -84,8 +84,8 @@ public class EmployeeDB {
                         rs.getString ("employee_address"),
                         rs.getFloat("salary"),
                         rs.getString("bank_detail"),
-                        rs.getBoolean("is_Manager"),
-                        rs.getBoolean("active"),
+                        rs.getShort("is_Manager"),
+                        rs.getShort("active"),
                         rs.getString("employee_type")
                 ));
             }
@@ -93,4 +93,43 @@ public class EmployeeDB {
                 System.out.println("There was a problem entering data into db: " + e.getMessage());
         }
     }
+
+
+    public void addEmployee(Employee emp){
+        System.out.println(String.format("insert into Employee (f_name, l_name, " +
+                        "ni_number, employee_address, salary, " +
+                        "bank_detail, is_manager, employee_type) " +
+                        "values(" +
+                        "'%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s')",
+                emp.getF_name(),
+                emp.getL_name(),
+                emp.getNi_number(),
+                emp.getEmployee_address(),
+                emp.getSalary(),
+                emp.getBank_detail(),
+                emp.isIs_Manager(),
+                emp.getEmployee_type()));
+        if (c == null) {
+            c = getConnection();
+        }
+        try {
+            Statement s = c.createStatement();
+            s.executeUpdate(String.format("insert into Employee (f_name, l_name, " +
+                            "ni_number, employee_address, salary, " +
+                            "bank_detail, is_manager, employee_type) " +
+                    "values(" +
+                            "'%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s')",
+                    emp.getF_name(),
+                    emp.getL_name(),
+                    emp.getNi_number(),
+                    emp.getEmployee_address(),
+                    emp.getSalary(),
+                    emp.getBank_detail(),
+                    emp.isIs_Manager(),
+                    emp.getEmployee_type()));
+        } catch (SQLException e){
+            System.out.println("There was a problem during inserting data into db: " + e.getMessage());
+        }
     }
+
+}
