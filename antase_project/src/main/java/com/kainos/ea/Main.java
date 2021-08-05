@@ -41,7 +41,8 @@ public class Main {
                     String ni_number = input.nextLine();
                     Matcher matcher = pattern.matcher(ni_number);
                     if(!matcher.find()){
-                        throw new IllegalArgumentException("National Insurance Number not valid");
+                        System.out.println("National Insurance Number not valid");
+                        break;
                     }
                     System.out.println("Address: ");
                     String address = input.nextLine();
