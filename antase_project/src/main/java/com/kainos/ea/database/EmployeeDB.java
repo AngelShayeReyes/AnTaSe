@@ -3,10 +3,7 @@ package com.kainos.ea.database;
 import com.kainos.ea.entities.Employee;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -61,6 +58,43 @@ public class EmployeeDB {
             e.printStackTrace();
         }
         return emps;
+    }
+
+    public void addEmployee(Employee emp){
+        System.out.println(String.format("insert into Employee (f_name, l_name, " +
+                        "ni_number, employee_address, salary, " +
+                        "bank_detail, is_manager, employee_type) " +
+                        "values(" +
+                        "'%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s')",
+                emp.getF_name(),
+                emp.getL_name(),
+                emp.getNi_number(),
+                emp.getEmployee_address(),
+                emp.getSalary(),
+                emp.getBank_detail(),
+                emp.isIs_Manager(),
+                emp.getEmployee_type()));
+        if (c == null) {
+            c = getConnection();
+        }
+        try {
+            Statement s = c.createStatement();
+            s.executeUpdate(String.format("insert into Employee (f_name, l_name, " +
+                            "ni_number, employee_address, salary, " +
+                            "bank_detail, is_manager, employee_type) " +
+                    "values(" +
+                            "'%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s')",
+                    emp.getF_name(),
+                    emp.getL_name(),
+                    emp.getNi_number(),
+                    emp.getEmployee_address(),
+                    emp.getSalary(),
+                    emp.getBank_detail(),
+                    emp.isIs_Manager(),
+                    emp.getEmployee_type()));
+        } catch (SQLException e){
+            System.out.println("There was a problem during inserting data into db: " + e.getMessage());
+        }
     }
 
 }
