@@ -112,4 +112,14 @@ public class Employee {
     public void setEmployee_type(String employee_type) {
         this.employee_type = employee_type;
     }
+
+    @Override
+    public String toString(){
+        return String.format("""
+                    Employee %d:\s
+                    \tName = %s,\s
+                    \tSalary = £%,.2f,\s""",
+                employee_id, f_name, salary/100.0);
+    }
+
 }
