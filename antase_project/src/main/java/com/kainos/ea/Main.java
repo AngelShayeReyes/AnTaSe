@@ -1,12 +1,10 @@
 package com.kainos.ea;
 
-import com.kainos.ea.database.EmployeeDB;
 import com.kainos.ea.entities.Employee;
 import com.kainos.ea.entities.HR;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -67,7 +65,6 @@ public class Main {
                         System.out.println("Type not supported");
                         break;
                     }
-                    boolean managerTmp;
                     Employee employee = new Employee(f_name, l_name, ni_number,
                             address, salary, bank, (short)manager, type);
                     hr.addEmployee(employee);
