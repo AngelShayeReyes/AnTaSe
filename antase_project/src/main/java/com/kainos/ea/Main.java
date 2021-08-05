@@ -14,6 +14,7 @@ public class Main {
         while(running){
             System.out.println("1. Do a query");
             System.out.println("2. Quit");
+            System.out.println("4. Add a sales employee");
             Scanner input = new Scanner(System.in);
             int x = input.nextInt();
 
@@ -26,6 +27,12 @@ public class Main {
                     break;
                 case 2:
                     running = false;
+                case 4:
+                    List<Employee> sales_employees = EmployeeDB.getEmployees();
+                    for(com.kainos.ea.entities.Employee emp : sales_employees) {
+                        System.out.println(emp);
+                    }
+                        break;
             }
         }
     }

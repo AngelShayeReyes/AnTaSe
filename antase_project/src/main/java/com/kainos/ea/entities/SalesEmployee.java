@@ -5,6 +5,8 @@ public class SalesEmployee extends Employee {
         private float commissionRate;
         private int salesTotal;
 
+    private int employee_id;
+
     public SalesEmployee(int employee_id, String f_name, String l_name, String ni_number,
                          String employee_address, float salary, String bank_detail,
                          boolean is_Manager, boolean active, String employee_type,
@@ -15,7 +17,8 @@ public class SalesEmployee extends Employee {
         this.salesTotal = salesTotal;
     }
 
-   /* public SalesEmployee (float commissionRate, int salesTotal) {
+    /*public SalesEmployee (float commissionRate, int salesTotal, int employee_id) {
+        super(commissionRate, salesTotal, employee_id);
         this.commissionRate = commissionRate;
         this.salesTotal = salesTotal;
     }*/
@@ -35,6 +38,16 @@ public class SalesEmployee extends Employee {
         public void setSalesTotal(int salesTotal) {
             this.salesTotal = salesTotal;
         }
+
+        @Override
+        public int getEmployee_id() {
+        return employee_id;
+    }
+
+    @Override
+    public void setEmployee_id(int employee_id) {
+        super.setEmployee_id(employee_id);
+    }
 
     /*@Override
     public int calcPay() {
