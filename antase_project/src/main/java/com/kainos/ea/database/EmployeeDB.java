@@ -1,6 +1,7 @@
 package com.kainos.ea.database;
 
 import com.kainos.ea.entities.Employee;
+import com.kainos.ea.entities.SalesEmployee;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -63,4 +64,64 @@ public class EmployeeDB {
         return emps;
     }
 
+    public void addSalesEmployee(SalesEmployee salesEmp) {
+        if(c == null) {
+            c = getConnection();
+        }
+        List<Employee> sales_emp = new ArrayList<>();
+        try {
+            Statement s = c.createStatement();
+            ResultSet rs = s.executeQuery(
+                    """
+                        INSERT INTO Employee ('f_name', 'l_name', 'ni_number', 'employee_address', 
+                        'salary', 'bank_detail', 'is_Manager', 'active', 'employee_type')
+                        )
+                        VALUES (%d, %s, %s, %d, %s, %d, %s, %d, %d, %s)
+                        """);
+            while (rs.next()) {
+                sales_emp.add(new Employee(
+                        rs.getInt("employee_id"),
+                        rs.getString("f_name"),
+                        rs.getString("l_name"),
+                        rs.getString("ni_number"),
+                        rs.getString ("employee_address"),
+                        rs.getFloat("salary"),
+                        rs.getString("bank_detail"),
+                        rs.getShort("is_Manager"),
+                        rs.getShort("active"),
+                        rs.getString("employee_type")
+                ));
+            }
+        } catch (SQLException e) {
+                System.out.println("There was a problem entering data into db: " + e.getMessage());
+        }
+    }
+
+
+    public void addEmployee(Employee emp){
+        if (c == null) {
+            c = getConnection();
+        }
+        try {
+            Statement s = c.createStatement();
+            s.executeUpdate(String.format("insert into Employee (f_name, l_name, " +
+                            "ni_number, employee_address, salary, " +
+                            "bank_detail, is_manager, employee_type) " +
+                    "values(" +
+                            "'%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s')",
+                    emp.getF_name(),
+                    emp.getL_name(),
+                    emp.getNi_number(),
+                    emp.getEmployee_address(),
+                    emp.getSalary(),
+                    emp.getBank_detail(),
+                    emp.isIs_Manager(),
+                    emp.getEmployee_type()));
+            System.out.println("Employee added");
+        } catch (SQLException e){
+            System.out.println("There was a problem during inserting data into db: " + e.getMessage());
+        }
+    }
+
 }
+

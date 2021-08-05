@@ -26,6 +26,7 @@ public class Employee {
         this.employee_type = employee_type;
     }
 
+    //for proof of concept
     public Employee(String f_name, String l_name, String ni_number, String employee_address, float salary,
                     String bank_detail, short is_Manager, String employee_type) {
         this.f_name = f_name;
