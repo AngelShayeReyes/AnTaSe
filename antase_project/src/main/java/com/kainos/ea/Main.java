@@ -2,10 +2,15 @@ package com.kainos.ea;
 
 import com.kainos.ea.database.EmployeeDB;
 import com.kainos.ea.entities.Employee;
+import com.kainos.ea.entities.HR;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Main {
 
@@ -19,7 +24,8 @@ public class Main {
             System.out.println("9. Quit");
             Scanner input = new Scanner(System.in);
             int x = input.nextInt();
-
+            List<String> types = Arrays.asList("Technical", "BU", "Sales", "HR", "Finance");
+            HR hr = new HR();
             switch (x) {
                 case 1:
                     List<Employee> employees = EmployeeDB.getEmployees();
