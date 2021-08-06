@@ -23,4 +23,5 @@
 hs_err_pid*
 
 *.properties
-./antase_project/employeesdb.properties
+/antase_project/employeesdb.properties
+employeesdb.properties
